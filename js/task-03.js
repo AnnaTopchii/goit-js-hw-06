@@ -13,18 +13,31 @@ const images = [
   },
 ];
 
-const makeGallery = images => {
-  return images.map(image => {
-    const listItem = document.createElement('li');
-    const listItemImage = document.createElement('img');
-    listItem.append(listItemImage);
-    listItemImage.src = image.url;
-    listItemImage.alt = image.alt;
-    listItemImage.width = 320;
-    return listItem
-  })
-}
+// Variant 1
+//const makeGallery = images => {
+//  return images.map(image => {
+//    const listItem = document.createElement('li');
+//    const listItemImage = document.createElement('img');
+//    listItem.append(listItemImage);
+//    listItemImage.src = image.url;
+//    listItemImage.alt = image.alt;
+//   listItemImage.width = 320;
+//    return listItem
+//  })
+//}
 
-const listEl = makeGallery(images);
+//const listEl = makeGallery(images);
+//const galleryEl = document.querySelector(".gallery");
+//galleryEl.append(...listEl)
+
+
+//Variant 2
+
 const galleryEl = document.querySelector(".gallery");
-galleryEl.append(...listEl)
+
+const imageEl = images
+  .map((image) =>
+    { return `<li><img width="320" src="${image.url}"" alt="${image.alt}"/> </li>`})
+  .join("");
+
+galleryEl.insertAdjacentHTML("beforeend", imageEl)
